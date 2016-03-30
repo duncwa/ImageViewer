@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MainTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSCopying>
 
 @property (nonatomic, strong) NSMutableArray *photos;
 

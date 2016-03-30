@@ -16,16 +16,18 @@
 
 @interface MainTableViewController ()
 
+#pragma mark - Properties
+
+@property (nonatomic, strong) Photos *photo;
+@property (nonatomic, strong) NSMutableArray *photosArray;
+@property (nonatomic, strong) NSMutableDictionary *photosDictionary;
+@property (nonatomic, strong) id json;
+
 @end
 
 
 @implementation MainTableViewController
 
-#pragma mark - Properties
-
-Photos *photo;
-NSMutableArray *photosArray;
-NSMutableDictionary *photosDictionary;
 
 #pragma mark - Initialization
 
@@ -47,26 +49,25 @@ NSMutableDictionary *photosDictionary;
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
       return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-      return [photosArray count];
+      return [self.photosArray count];
 }
  
  - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    PhotoViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoViewCell"forIndexPath:indexPath];
-   photosDictionary = [photosArray objectAtIndex:indexPath.row];
+   self.photosDictionary = [self.photosArray objectAtIndex:indexPath.row];
    Photos *photo = [[Photos alloc] init];
-   photo.albumId = [photosDictionary objectForKey:@"albumId"];
-   photo.photoId = [photosDictionary objectForKey:@"id"];
-   photo.title = [photosDictionary objectForKey:@"title"];
-   photo.url = [photosDictionary objectForKey:@"url"];
-   photo.thumbnailUrl = [photosDictionary objectForKey:@"thumbnailUrl"];
+   photo.albumId = [self.photosDictionary objectForKey:@"albumId"];
+   photo.photoId = [self.photosDictionary objectForKey:@"id"];
+   photo.title = [self.photosDictionary objectForKey:@"title"];
+   photo.url = [self.photosDictionary objectForKey:@"url"];
+   photo.thumbnailUrl = [self.photosDictionary objectForKey:@"thumbnailUrl"];
    
    UILabel *photoTitle = (UILabel *)[cell viewWithTag:10];
    photoTitle.text = photo.title;
@@ -74,7 +75,7 @@ NSMutableDictionary *photosDictionary;
    photoUrl.text = photo.thumbnailUrl;
 
    NSURL *imageURL = [NSURL URLWithString:
-              [[photosArray objectAtIndex:indexPath.row]
+              [[self.photosArray objectAtIndex:indexPath.row]
                               valueForKey:@"thumbnailUrl"]];
    
    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -83,30 +84,41 @@ NSMutableDictionary *photosDictionary;
        if (image) {
          
 #pragma mark - GCD updating UI on main thread
-         
-         dispatch_async(kQueueMain, ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
            PhotoViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
            if (updateCell)
              updateCell.photoImage.image = image;
          });
-       }
+        }
      }
    }];
-   
    [task resume];
    return cell;
+ }
+
+#pragma mark - Deep copy of a pass by reference object
+
+- (id)copyWithZone:(NSZone *)zone {
+  
+  id copy = self.json;
+  
+  return copy;
 }
+
 
 #pragma mark - Asynchronous data fetch in background
 
 - (void)fetchedData:(NSData *)responseData {
   NSError *error;
-  NSArray *json = [NSJSONSerialization
+  self.json = [NSJSONSerialization
                    JSONObjectWithData:responseData
                    options:kNilOptions
                    error:&error];
 
-  photosArray = [NSMutableArray arrayWithArray:json];
+  self.photosArray = [self.json mutableCopyWithZone: nil];
+  [self.photosArray removeObjectAtIndex:0];
+  NSLog(@"Items in self.photosArray is: %lu", [self.photosArray count]);
+  NSLog(@"Items in self.photosArray is: %lu", [self.json count]);
 
   [self.tableView reloadData];
 }
