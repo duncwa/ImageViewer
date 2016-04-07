@@ -13,5 +13,9 @@
 @property (nonatomic, strong) IBOutlet UIImageView *photoImage;
 @property (nonatomic, strong) IBOutlet UILabel *title;
 @property (nonatomic, strong) IBOutlet UILabel *url;
+@property (nonatomic, strong) IBOutlet UILabel *photoId;
+@property (nonatomic, strong) IBOutlet UILabel *albumId;
+
+
 
 @end

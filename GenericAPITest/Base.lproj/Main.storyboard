@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GkH-m8-dGP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GkH-m8-dGP">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -37,18 +37,33 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="242" height="245"/>
                                             </variation>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9O-ZY-r3L">
+                                            <rect key="frame" x="107" y="171" width="14.5" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="a8S-xV-uSo" firstAttribute="top" secondItem="eFU-Ub-GZX" secondAttribute="topMargin" constant="100" id="DZW-XX-OcV"/>
+                                        <constraint firstItem="h9O-ZY-r3L" firstAttribute="top" secondItem="cTN-l2-BgI" secondAttribute="bottom" constant="-82" id="Bxc-bT-tia"/>
                                         <constraint firstItem="cTN-l2-BgI" firstAttribute="leading" secondItem="eFU-Ub-GZX" secondAttribute="leadingMargin" constant="10" id="Hqw-Hl-obS"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="cTN-l2-BgI" secondAttribute="bottom" id="KE4-5Y-q3h"/>
+                                        <constraint firstItem="a8S-xV-uSo" firstAttribute="top" secondItem="eFU-Ub-GZX" secondAttribute="topMargin" constant="100" id="Ugq-hw-ljW"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="a8S-xV-uSo" secondAttribute="bottom" constant="99" id="dqz-5l-gDO"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="a8S-xV-uSo" secondAttribute="trailing" id="hJt-Qh-VbA"/>
+                                        <constraint firstItem="h9O-ZY-r3L" firstAttribute="leading" secondItem="cTN-l2-BgI" secondAttribute="trailing" constant="-153" id="oMM-de-Aee"/>
                                         <constraint firstAttribute="topMargin" secondItem="cTN-l2-BgI" secondAttribute="top" id="qsq-kg-tEW"/>
+                                        <constraint firstItem="h9O-ZY-r3L" firstAttribute="leading" secondItem="cTN-l2-BgI" secondAttribute="trailing" constant="-153" id="ruI-Jj-YZJ"/>
                                         <constraint firstItem="a8S-xV-uSo" firstAttribute="leading" secondItem="cTN-l2-BgI" secondAttribute="trailing" constant="8" symbolic="YES" id="z2h-NA-6QZ"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="oMM-de-Aee"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="photoId" destination="h9O-ZY-r3L" id="L0z-0n-HXh"/>
                                     <outlet property="photoImage" destination="cTN-l2-BgI" id="vwC-GT-EeI"/>
                                     <outlet property="title" destination="a8S-xV-uSo" id="yvB-im-l7a"/>
                                 </connections>
@@ -63,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vV9-bx-ZxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16" y="-421"/>
+            <point key="canvasLocation" x="22" y="-651"/>
         </scene>
     </scenes>
 </document>

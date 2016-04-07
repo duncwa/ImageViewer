@@ -66,6 +66,7 @@
    photo.albumId = [self.photosDictionary objectForKey:@"albumId"];
    photo.photoId = [self.photosDictionary objectForKey:@"id"];
    photo.title = [self.photosDictionary objectForKey:@"title"];
+   
    photo.url = [self.photosDictionary objectForKey:@"url"];
    photo.thumbnailUrl = [self.photosDictionary objectForKey:@"thumbnailUrl"];
    
@@ -73,7 +74,9 @@
    photoTitle.text = photo.title;
    UILabel *photoUrl = (UILabel *)[cell viewWithTag:11];
    photoUrl.text = photo.thumbnailUrl;
-
+   UILabel *photoId = (UILabel *)[cell viewWithTag:13];
+   photoId.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+   
    NSURL *imageURL = [NSURL URLWithString:
               [[self.photosArray objectAtIndex:indexPath.row]
                               valueForKey:@"thumbnailUrl"]];
@@ -116,9 +119,6 @@
                    error:&error];
 
   self.photosArray = [self.json mutableCopyWithZone: nil];
-  [self.photosArray removeObjectAtIndex:0];
-  NSLog(@"Items in self.photosArray is: %lu", [self.photosArray count]);
-  NSLog(@"Items in self.photosArray is: %lu", [self.json count]);
 
   [self.tableView reloadData];
 }
