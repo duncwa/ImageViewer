@@ -89,8 +89,11 @@
 #pragma mark - GCD updating UI on main thread
          dispatch_async(dispatch_get_main_queue(), ^{
            PhotoViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+           NSAssert([updateCell isKindOfClass:[UITableViewCell class]], NULL);
            if (updateCell)
              updateCell.photoImage.image = image;
+             NSLog(@" Inside main queue block now!! %ld", (long)indexPath.item);
+            
          });
         }
      }
