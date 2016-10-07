@@ -36,10 +36,14 @@
   [super viewDidLoad];
 
   dispatch_async(kQueueGlobal, ^{
+    NSLog(@"1 of 3 - get data from network on background queue asynchronously");
     NSData *data = [NSData dataWithContentsOfURL:
                     kPhotosURL];
-    [self performSelectorOnMainThread:@selector(fetchedData:)
-                           withObject:data waitUntilDone:YES];
+    // Remove below  per recommendation to not mix performSelector
+    // with dispatch_async
+    //[self performSelectorOnMainThread:@selector(fetchedData:)
+    //                       withObject:data waitUntilDone:YES];
+    [self fetchedData:data];
   });
 
 }
@@ -90,11 +94,10 @@
 #pragma mark - GCD updating UI on main thread
          dispatch_async(kQueueMain, ^{
            PhotoViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-           NSAssert([updateCell isKindOfClass:[UITableViewCell class]], NULL);
+           //NSAssert([updateCell isKindOfClass:[UITableViewCell class]], NULL);
            if (updateCell)
              updateCell.photoImage.image = image;
-             NSLog(@" Inside main queue block now!! %ld", (long)indexPath.item);
-            
+             NSLog(@"3 of 3 - updateCell.photoImage.image on main queue asynchronously %ld", (long)indexPath.item);
          });
         }
      }
@@ -113,7 +116,7 @@
 }
 
 
-#pragma mark - Asynchronous data fetch in background
+#pragma mark - Asynchronous data serialization/parse in background
 
 - (void)fetchedData:(NSData *)responseData {
   NSError *error;
@@ -123,8 +126,11 @@
                    error:&error];
 
   self.photosArray = [self.json mutableCopyWithZone: nil];
-
-  [self.tableView reloadData];
+  dispatch_async(kQueueMain, ^(void){
+    //Run UI Updates
+    NSLog(@"2 of 3 - [self.tableView reloadData] on main queue synchronously");
+    [self.tableView reloadData];
+  });
 }
 
 
