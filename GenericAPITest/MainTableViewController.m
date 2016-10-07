@@ -87,7 +87,7 @@
        if (image) {
          
 #pragma mark - GCD updating UI on main thread
-         dispatch_async(dispatch_get_main_queue(), ^{
+         dispatch_async(kQueueMain, ^{
            PhotoViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
            if (updateCell)
              updateCell.photoImage.image = image;
