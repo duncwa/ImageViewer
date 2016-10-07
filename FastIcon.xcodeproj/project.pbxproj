@@ -225,7 +225,11 @@
 				TargetAttributes = {
 					D518F62F1C8F436B003AF512 = {
 						CreatedOnToolsVersion = 7.2.1;
+<<<<<<< HEAD
 						DevelopmentTeam = 35CW3L3U5Z;
+=======
+						DevelopmentTeam = 427JR2K8TU;
+>>>>>>> 27cc0e399002b30f21fabf00a8f499db6d8bbc8e
 					};
 					D518F6481C8F436B003AF512 = {
 						CreatedOnToolsVersion = 7.2.1;
