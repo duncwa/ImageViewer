@@ -229,10 +229,12 @@
 					};
 					D518F6481C8F436B003AF512 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 427JR2K8TU;
 						TestTargetID = D518F62F1C8F436B003AF512;
 					};
 					D518F6531C8F436B003AF512 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 427JR2K8TU;
 						TestTargetID = D518F62F1C8F436B003AF512;
 					};
 				};
@@ -478,6 +480,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 427JR2K8TU;
 				INFOPLIST_FILE = GenericAPITestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = duncwa.GenericAPITestTests;
@@ -490,6 +494,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 427JR2K8TU;
 				INFOPLIST_FILE = GenericAPITestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = duncwa.GenericAPITestTests;
@@ -501,6 +507,8 @@
 		D518F6641C8F436B003AF512 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 427JR2K8TU;
 				INFOPLIST_FILE = GenericAPITestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = duncwa.GenericAPITestUITests;
@@ -513,6 +521,8 @@
 		D518F6651C8F436B003AF512 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 427JR2K8TU;
 				INFOPLIST_FILE = GenericAPITestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = duncwa.GenericAPITestUITests;
