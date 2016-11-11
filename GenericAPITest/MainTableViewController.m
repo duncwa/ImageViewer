@@ -43,6 +43,7 @@
     // with dispatch_async
     //[self performSelectorOnMainThread:@selector(fetchedData:)
     //                       withObject:data waitUntilDone:YES];
+    NSLog(@"Asynchronous call executing now.");
     [self fetchedData:data];
   });
 
